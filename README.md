@@ -1,4 +1,58 @@
-# Welcome to your organization's demo respository
-This code repository (or "repo") is designed to demonstrate the best GitHub has to offer with the least amount of noise.
+# Digital Land Frontend
 
-The repo includes an `index.html` file (so it can render a web page), two GitHub Actions workflows, and a CSS stylesheet dependency.
+## Description
+
+This repository contains the frontend application for the Digital Land project, providing user interfaces and interactions. It integrates with the backend APIs to power functionalities such as property browsing, user authentication, and order processing.
+
+### Technologies Used
+
+- Languages:
+  - TypeScript
+  - JavaScript
+- Package Manager:
+  - yarn
+- Framework:
+  - React
+- Styling:
+  - Tailwind
+- State Management:
+  - Redux
+- Testing:
+  - Vitest
+  - React Testing Library
+- Build Tools:
+  - vite
+
+### Getting Started
+
+- Clone this project on your local machine
+
+  ```bash
+  git clone https://github.com/Digital-Land-Platform/Digital-Land-Web.git
+
+  ```
+
+- Navigate to project directory
+
+  ```
+  cd Digital-Land-Web
+  ```
+
+- Install dependencies
+  ```
+  yarn install
+  ```
+
+### Run The Service
+
+- Start developer server
+  ```
+  yarn dev
+  ```
+
+## Testing
+
+- Run tests
+  ```
+  yarn test
+  ```
