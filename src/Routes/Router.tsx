@@ -5,6 +5,8 @@ import MainLayout from '../layout/MainLayout';
 import NotFound from './NotFound';
 import HomePage from '../pages/HomePage/Homepage';
 import PaymentPage from '../pages/PaymentPage';
+import PropertyDetailsPage from '../pages/Property/singlepropetyPage';
+import UserProfile from '../components/Cards/userprofile';
 
 const Router = () => {
   return (
@@ -26,12 +28,28 @@ const Router = () => {
           </MainLayout>
         }
       />
+      <Route
+        path="/property/:id"
+        element={
+          <MainLayout>
+            <PropertyDetailsPage />
+          </MainLayout>
+        }
+      />
 
       <Route
         path="/profile"
         element={
           <MainLayout>
             <Profile />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/properties"
+        element={
+          <MainLayout>
+            <UserProfile />
           </MainLayout>
         }
       />
