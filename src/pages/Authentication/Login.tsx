@@ -1,13 +1,10 @@
 // Desc: Login Page - Login
 
-function Login() {
+import { useAuth0 } from "@auth0/auth0-react";
 
+const Login = () => {
+  const { loginWithRedirect } = useAuth0();
 
-  return (
-    <div>
-      <h1>Login Page</h1>
-    </div>
-  );
-}
-
+  return <button onClick={() => loginWithRedirect()}>Log In</button>;
+};
 export default Login;
