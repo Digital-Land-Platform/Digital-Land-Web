@@ -6,9 +6,7 @@ const MainLayout: React.FC<React.PropsWithChildren<unknown>> = ({ children }) =>
   return (
     <>
       <Navbar />
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   );
