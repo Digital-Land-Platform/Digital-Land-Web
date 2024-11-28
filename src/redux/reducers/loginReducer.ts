@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LoginResponse } from '../../types/LoginType';
 import { loginUser } from '../actions/loginAction';
 
-// This is just showercasing how reducers should be configured 
-// It may not work, you have to configure it yourself 
+// This is just showercasing how reducers should be configured
+// It may not work, you have to configure it yourself
 // I think Henok is the one to work on login so, don't rely on it or anything else except project setups
 
 interface loginState {

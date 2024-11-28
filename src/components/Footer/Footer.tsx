@@ -1,17 +1,17 @@
 import React from 'react';
 import { whatsappUrl, instagramUrl, gmailUrl } from '../../assets/images/img';
 function Footer() {
-  let logo = gmailUrl;
-  let whataspp = whatsappUrl;
-  let instagram = instagramUrl;
-  let gmail = gmailUrl;
+  const logo = gmailUrl;
+  const whataspp = whatsappUrl;
+  const instagram = instagramUrl;
+  const gmail = gmailUrl;
 
   return (
     <div className="w-full flex flex-col items-center justify-start gap-y-2 xmd:gap-y-8 py-8" data-testid="footer">
       <div className="w-full md:w-[80%] flex items-start justify-between gap-x-3 p-4 md:p-0">
         <div className="flex flex-col items-start justify-start gap-y-6 pb-10">
           <h1 className="flex items-end justify-start gap-x-1 xmd:gap-x-2 text-primary capitalize font-medium text-lg xmd:text-xl leading-4">
-            <img src={logo} alt="" className="w-[15%] rounded"/>
+            <img src={logo} alt="" className="w-[15%] rounded" />
             Digital Land
           </h1>
 

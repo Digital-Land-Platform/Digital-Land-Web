@@ -5,7 +5,7 @@ import loginReducer from './loginReducer';
 // Import all reducers here and combine them
 
 const rootReducer = combineReducers({
-  login: loginReducer,
+  login: loginReducer
 });
 export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;

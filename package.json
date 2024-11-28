@@ -1,8 +1,12 @@
 {
   "name": "digital-land-web",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "main": "dist/index.js",
+  "repository": "https://github.com/Digital-Land-Platform/Digital-Land-Web.git",
+  "author": "Jean Paul Elisa <niyokwizerwajeanpaulelisa@gmail.com>",
+  "license": "none",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
