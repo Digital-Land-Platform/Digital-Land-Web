@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaHome, FaFilm, FaCompass, FaHandshake, FaBars } from 'react-icons/fa';
 import SigninButton from '../../components/Button/SIgninButton';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,14 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check localStorage for token
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    setIsLoggedIn(!!token); // Set isLoggedIn based on token presence
+  }, []);
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar state
   };
@@ -82,11 +90,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) =>
 
           {/* Sign-In Section */}
           <div className="mt-6">
-            <p className="text-sm text-blue-950 font-bold flex items-center gap-2 pb-[20px]">
-              Great to have you here again!
-              <FaHandshake className="text-blue-950" />
-            </p>
-            <SigninButton />
+            {/* Conditionally render Signin or Signout based on isLoggedIn */}
+            {isLoggedIn ? (
+              <div></div> // Render empty div when logged in, or add Signout logic here
+            ) : (
+              <>
+                <p className="text-sm text-blue-950 font-bold flex items-center gap-2 pb-[20px]">
+                  Great to have you here again!
+                  <FaHandshake className="text-blue-950" />
+                </p>
+                <SigninButton />
+              </>
+            )}
           </div>
 
           {/* Additional Links (Horizontal Layout) */}
