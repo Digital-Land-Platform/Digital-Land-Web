@@ -78,6 +78,7 @@ const Homepage = () => {
 
               return (
                 <PropertyCard
+                  id={property.id}
                   key={property.id}
                   src={property.images[0]?.url}
                   title={property.title}
