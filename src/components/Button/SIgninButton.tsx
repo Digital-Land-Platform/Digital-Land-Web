@@ -1,5 +1,5 @@
-import React from "react";
-import { FaUserPlus } from "react-icons/fa";
+import React from 'react';
+import { FaUserPlus } from 'react-icons/fa';
 
 const SigninButton: React.FC = () => {
   return (

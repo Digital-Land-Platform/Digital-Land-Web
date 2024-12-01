@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LoginResponse } from "../../types/LoginType";
-import { loginUser } from "../actions/loginAction";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LoginResponse } from '../../types/LoginType';
+import { loginUser } from '../actions/loginAction';
 
 // This is just showercasing how reducers should be configured
 // It may not work, you have to configure it yourself
@@ -15,14 +15,14 @@ interface loginState {
 const initialState: loginState = {
   login: null,
   loading: false,
-  error: null,
+  error: null
 };
 
 const loginSlice = createSlice({
-  name: "login",
+  name: 'login',
   initialState,
   reducers: {
-    resetState: () => initialState,
+    resetState: () => initialState
   },
   extraReducers: (builder) => {
     builder
@@ -30,19 +30,15 @@ const loginSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        loginUser.fulfilled,
-        (state, action: PayloadAction<LoginResponse>) => {
-          state.login = action.payload;
-          state.loading = false;
-        },
-      )
+      .addCase(loginUser.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
+        state.login = action.payload;
+        state.loading = false;
+      })
       .addCase(loginUser.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
-        state.error =
-          action.payload.message || "Something went wrong, please try again.";
+        state.error = action.payload.message || 'Something went wrong, please try again.';
       });
-  },
+  }
 });
 
 export const { resetState } = loginSlice.actions;

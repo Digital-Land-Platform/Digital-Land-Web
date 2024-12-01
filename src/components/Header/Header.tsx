@@ -1,5 +1,5 @@
-import React from "react";
-import SigninButton from "../../components/Button/SIgninButton";
+import React from 'react';
+import SigninButton from '../../components/Button/SIgninButton';
 
 const Header: React.FC = () => {
   return (

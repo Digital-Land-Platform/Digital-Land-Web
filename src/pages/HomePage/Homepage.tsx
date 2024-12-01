@@ -1,10 +1,11 @@
-import { useQuery, useLazyQuery } from "@apollo/client";
-import { GET_PROPERTIES } from "../../Queries/propertyqueries";
-import { GET_LOCATION } from "../../Queries/locationqueries";
-import PropertyCard from "../../components/Cards/Propertycard";
-import HeroBanner from "../../components/HeroBanner/HeroBanner";
-import { ExclusiveOffers } from "../../components/ExclusiveOffers/ExclusiveOffers";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useQuery, useLazyQuery } from '@apollo/client';
+import { GET_PROPERTIES } from '../../Queries/propertyqueries';
+import { GET_LOCATION } from '../../Queries/locationqueries';
+import PropertyCard from '../../components/Cards/Propertycard';
+import HeroBanner from '../../components/HeroBanner/HeroBanner';
+import { ExclusiveOffers } from '../../components/ExclusiveOffers/ExclusiveOffers';
+import { useState, useEffect, useCallback } from 'react';
 
 interface Property {
   id: string;
@@ -36,29 +37,30 @@ const Homepage = () => {
   const [getLocation] = useLazyQuery(GET_LOCATION);
   const [locations, setLocations] = useState<Record<string, Location>>({});
 
-  const fetchLocation = async (locationId: string) => {
-    if (locations[locationId]) return locations[locationId];
+  const fetchLocation = useCallback(
+    async (locationId: string) => {
+      if (locations[locationId]) return locations[locationId];
 
-    const { data } = await getLocation({ variables: { locationId } });
-    if (data?.getLocation) {
-      setLocations((prev) => ({
-        ...prev,
-        [locationId]: data.getLocation,
-      }));
-      return data.getLocation;
-    }
-    return null;
-  };
+      const { data } = await getLocation({ variables: { locationId } });
+      if (data?.getLocation) {
+        setLocations((prev) => ({
+          ...prev,
+          [locationId]: data.getLocation
+        }));
+        return data.getLocation;
+      }
+      return null;
+    },
+    [getLocation, locations]
+  );
 
   useEffect(() => {
-    // Fetch locations for all properties when data is loaded
     if (data) {
       data.listProperties.forEach((property) => {
-        // Call fetchLocation for each property to ensure location is fetched and cached
         fetchLocation(property.locationId);
       });
     }
-  }, [data, locations]);
+  }, [data, fetchLocation]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -83,9 +85,7 @@ const Homepage = () => {
                   size={property.size}
                   description={property.description}
                   location={
-                    location
-                      ? `${location.country}, ${location.province}, ${location.sector}`
-                      : "Loading location..."
+                    location ? `${location.country}, ${location.province}, ${location.sector}` : 'Loading location...'
                   }
                 />
               );

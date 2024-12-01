@@ -1,23 +1,21 @@
+import React from 'react';
+
 export const ExclusiveOffers = () => {
-  const offers = [
-    { title: "Semi-Detached House", image: "/offer1.jpg" },
-    { title: "Luxury Villa", image: "/offer2.jpg" },
-    { title: "Modern Apartment", image: "/offer3.jpg" },
-  ];
+  // const offers = [
+  //   { title: 'Semi-Detached House', image: '/offer1.jpg' },
+  //   { title: 'Luxury Villa', image: '/offer2.jpg' },
+  //   { title: 'Modern Apartment', image: '/offer3.jpg' }
+  // ];
 
   return (
     <div className=" fixed right-0 flex items-center justify-center min-h-screen p-4 ">
       <div className="text-center p-4  rounded-lg shadow-sm max-w-sm w-full">
         <div className="flex items-center justify-center mb-4">
           <i className="fas fa-envelope text-yellow-500 text-xl"></i>
-          <span className="ml-2 text-yellow-500 text-sm font-medium">
-            Sign Up
-          </span>
+          <span className="ml-2 text-yellow-500 text-sm font-medium">Sign Up</span>
           <span className="ml-2 text-sm">for our newsletter!</span>
         </div>
-        <h2 className="text-lg font-semibold text-teal-700 mb-2">
-          Exclusive Offers
-        </h2>
+        <h2 className="text-lg font-semibold text-teal-700 mb-2">Exclusive Offers</h2>
 
         <div className="pr-10 space-y-3 ml-10">
           {/* Image 1 */}
@@ -37,9 +35,7 @@ export const ExclusiveOffers = () => {
               className="w-full h-full object-cover rounded-[6px]" // Image fills container
             />
             <div className="absolute rounded-[6px] inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
-              <span className="text-white text-xs font-bold">
-                Semi Detached House
-              </span>
+              <span className="text-white text-xs font-bold">Semi Detached House</span>
               <button className="mt-1 font-bold text-yellow-500 px-4 py-2 rounded-lg text-sm shadow-lg hover:bg-yellow-400 transition">
                 <span className="fa-stack fa-xs">
                   <i className="fas fa-tag fa-stack-2x transform scale-x-[-1]"></i>

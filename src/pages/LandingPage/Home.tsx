@@ -1,6 +1,7 @@
-import Login from "../Authentication/Login";
-import Logout from "../Authentication/Logout";
-import Profile from "../Authentication/Profile";
+import React from 'react';
+import Login from '../Authentication/Login';
+import Logout from '../Authentication/Logout';
+import Profile from '../Authentication/Profile';
 
 const Home = () => {
   return (

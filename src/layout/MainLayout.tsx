@@ -1,27 +1,21 @@
-import React, { useState } from "react";
-import { FaBars } from "react-icons/fa";
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
-import Sidebar from "../components/SideBar/SideBar";
+import React, { useState } from 'react';
+import { FaBars } from 'react-icons/fa';
+import Header from '../components/Header/Header';
+import Sidebar from '../components/SideBar/SideBar';
 
-const MainLayout: React.FC<React.PropsWithChildren<unknown>> = ({
-  children,
-}) => {
+const MainLayout: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Manage sidebar state here
 
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex flex-1">
         {/* Sidebar */}
-        <Sidebar
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
-        />
+        <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
         {/* Main Content */}
         <div
           className={`flex-1 flex flex-col p-6 bg-white overflow-y-auto transition-all duration-300 ${
-            isSidebarOpen ? "ml-[336px]" : "ml-0"
+            isSidebarOpen ? 'ml-[336px]' : 'ml-0'
           }`}
         >
           {/* Toggle Button (always visible) */}

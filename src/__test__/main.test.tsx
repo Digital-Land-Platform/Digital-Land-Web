@@ -1,14 +1,14 @@
 // src/index.test.tsx
 
-import React from "react";
-import { render } from "@testing-library/react";
-import App from "../App";
-import { BrowserRouter } from "react-router-dom";
-import { describe, it } from "vitest";
-import "@testing-library/jest-dom";
-describe("Root Component", () => {
-  it("renders without crashing", () => {
-    const div = document.createElement("div");
+import React from 'react';
+import { render } from '@testing-library/react';
+import App from '../App';
+import { BrowserRouter } from 'react-router-dom';
+import { describe, it } from 'vitest';
+import '@testing-library/jest-dom';
+describe('Root Component', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
     document.body.appendChild(div);
 
     render(
@@ -18,10 +18,10 @@ describe("Root Component", () => {
         </BrowserRouter>
       </React.StrictMode>,
       {
-        container: div,
-      },
+        container: div
+      }
     );
 
-    expect(div.querySelector("div")).toBeInTheDocument();
+    expect(div.querySelector('div')).toBeInTheDocument();
   });
 });
