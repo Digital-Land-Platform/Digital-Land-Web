@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Login from '../pages/Authentication/Login';
 import MainLayout from '../layout/MainLayout';
-import Home from '../pages/LandingPage/Home';
 import NotFound from './NotFound';
+import HomePage from '../pages/HomePage/Homepage';
 
 const Router = () => {
   return (
@@ -12,7 +12,7 @@ const Router = () => {
         path="/"
         element={
           <MainLayout>
-            <Home />
+            <HomePage />
           </MainLayout>
         }
       />

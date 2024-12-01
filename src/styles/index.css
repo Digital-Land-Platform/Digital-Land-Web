@@ -6,6 +6,13 @@
   font-family: 'Poppins', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  width: 1440;
+  height: 1024;
+  top: 6001;
+  left: 2677;
+  border-radius: 32;
+  border: 1;
+  margin: 0 auto;
 
   /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87); */

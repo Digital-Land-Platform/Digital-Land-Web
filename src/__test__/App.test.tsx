@@ -12,7 +12,10 @@ describe('App', () => {
       </Router>
     );
 
-    // const landingPageElement = screen.getByText('home');
+    // const landingPageElement = screen.getByText(/Explore our collections/i);
     // expect(landingPageElement).toBeInTheDocument();
+
+    // const categoryElement = screen.getByText(/Electronic/i);
+    // expect(categoryElement).toBeInTheDocument();
   });
 });

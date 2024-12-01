@@ -1,18 +1,15 @@
-// import React, { ReactNode } from 'react';
-// import { Outlet, useLocation } from 'react-router-dom';
-// import NotAllowed from './NotAllowed';
+import React, { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
 
-// interface ProtectedRouteProps {
-//   requiredRole?: string;
-//   children?: ReactNode;
-// }
+interface ProtectedRouteProps {
+  requiredRole?: string;
+  children?: ReactNode;
+}
 
-// const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ requiredRole, children }) => {
-//   // const location = useLocation();
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  //const location = useLocation();
 
-//   if (userRole !== requiredRole) {
-//     return <>{NotAllowed || <Outlet />}</>;
-//   }
-// };
+  return <>{children || <Outlet />}</>;
+};
 
-// export default ProtectedRoute;
+export default ProtectedRoute;

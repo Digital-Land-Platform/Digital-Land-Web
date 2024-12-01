@@ -1,4 +1,5 @@
 import React from 'react';
+
 const Navbar: React.FC = () => {
   // this is just set up for testing purposes only
   // in a real-world application, we would replace this with our actual navigation logic
