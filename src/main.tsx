@@ -9,10 +9,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0Provider
-        domain="insert_your_domain_here"
-        clientId="insert_yourclient_id_here"
+        domain={import.meta.env.VITE_AUTH_DOMAIN!}
+        clientId={import.meta.env.VITE_CLIENT_ID!}
         authorizationParams={{
-          redirect_uri: window.location.origin
+          redirect_uri: import.meta.env.VITE_REDIRECT_URI,
+          audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+          scope: 'offline_access openid profile email read:users'
         }}
       >
         <App />
