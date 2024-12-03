@@ -64,6 +64,7 @@ const Homepage = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  // if (!data || data.listProperties.length === 0) return <p>No properties yet!</p>;
 
   return (
     <div className="flex flex-col lg:flex-row">
