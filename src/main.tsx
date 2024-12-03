@@ -3,22 +3,32 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/index.css';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 import { Auth0Provider } from '@auth0/auth0-react';
+import getEnvVariable from '../config/config';
+
+const auth0Domain = getEnvVariable('VITE_AUTH_DOMAIN');
+const clientId = getEnvVariable('VITE_CLIENT_ID');
+const redirectUri = getEnvVariable('VITE_REDIRECT_URI');
+const audience = getEnvVariable('VITE_AUDIENCE');
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0Provider
-        domain={import.meta.env.VITE_AUTH_DOMAIN!}
-        clientId={import.meta.env.VITE_CLIENT_ID!}
+        domain={auth0Domain}
+        clientId={clientId}
         authorizationParams={{
-          redirect_uri: import.meta.env.VITE_REDIRECT_URI,
-          audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+          redirect_uri: redirectUri,
+          audience: audience,
           scope: 'offline_access openid profile email read:users'
         }}
       >
         <App />
       </Auth0Provider>
+      <Toaster />
+      <ToastContainer theme="colored" />
     </BrowserRouter>
   </React.StrictMode>
 );
