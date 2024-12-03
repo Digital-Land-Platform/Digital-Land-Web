@@ -64,7 +64,6 @@ const Homepage = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
   return (
     <div className="flex flex-col lg:flex-row">
       <main className="w-full p-6">
@@ -79,6 +78,7 @@ const Homepage = () => {
               return (
                 <PropertyCard
                   key={property.id}
+                  id={property.id} // Pass the correct property ID here
                   src={property.images[0]?.url}
                   title={property.title}
                   price={property.price}
