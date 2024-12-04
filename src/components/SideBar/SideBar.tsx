@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FaHome, FaFilm, FaCompass, FaHandshake, FaBars } from 'react-icons/fa';
 import SigninButton from '../../components/Button/SIgninButton';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -9,13 +10,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn } = useAuth();
 
-  // Check localStorage for token
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    setIsLoggedIn(!!token); // Set isLoggedIn based on token presence
-  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar state
@@ -114,20 +110,32 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) =>
             >
               {/* Row 1 */}
               <li className="w-auto flex space-x-4">
-                <a href="#" className="text-black hover:text-gray-800 whitespace-nowrap block text-center">
+                <a
+                  href="#"
+                  className="text-black hover:text-gray-800 whitespace-nowrap block text-center"
+                >
                   About
                 </a>
-                <a href="#" className="text-black hover:text-gray-800 whitespace-nowrap block text-center">
+                <a
+                  href="#"
+                  className="text-black hover:text-gray-800 whitespace-nowrap block text-center"
+                >
                   Reach out
                 </a>
-                <a href="#" className="text-black hover:text-gray-800 whitespace-nowrap block text-center">
+                <a
+                  href="#"
+                  className="text-black hover:text-gray-800 whitespace-nowrap block text-center"
+                >
                   FAQ
                 </a>
               </li>
 
               {/* Row 2 */}
               <li className="w-auto flex space-x-4">
-                <a href="#" className="text-black hover:text-gray-800 whitespace-nowrap block text-center">
+                <a
+                  href="#"
+                  className="text-black hover:text-gray-800 whitespace-nowrap block text-center"
+                >
                   Properties
                 </a>
                 <a href="#" className="text-black hover:text-gray-800 whitespace-nowrap block text-center">
@@ -150,10 +158,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) =>
 
               {/* Row 4 */}
               <li className="w-auto flex space-x-8">
-                <a href="#" className="text-black hover:text-gray-800 whitespace-nowrap block text-center">
+                <a
+                  href="#"
+                  className="text-black hover:text-gray-800 whitespace-nowrap block text-center"
+                >
                   Terms of Service
                 </a>
-                <a href="#" className="text-black hover:text-gray-800 whitespace-nowrap block text-center">
+                <a
+                  href="#"
+                  className="text-black hover:text-gray-800 whitespace-nowrap block text-center"
+                >
                   Refund Policy
                 </a>
               </li>

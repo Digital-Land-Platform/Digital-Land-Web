@@ -79,6 +79,7 @@ const Homepage = () => {
 
               return (
                 <PropertyCard
+                  id={property.id}
                   key={property.id}
                   src={property.images[0]?.url}
                   title={property.title}
@@ -86,7 +87,9 @@ const Homepage = () => {
                   size={property.size}
                   description={property.description}
                   location={
-                    location ? `${location.country}, ${location.province}, ${location.sector}` : 'Loading location...'
+                    location
+                      ? `${location.country}, ${location.province}, ${location.sector}`
+                      : 'Loading location...'
                   }
                 />
               );

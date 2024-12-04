@@ -4,6 +4,7 @@ import Profile from '../pages/Authentication/Profile';
 import MainLayout from '../layout/MainLayout';
 import NotFound from './NotFound';
 import HomePage from '../pages/HomePage/Homepage';
+import PaymentPage from '../pages/PaymentPage';
 
 const Router = () => {
   return (
@@ -13,6 +14,15 @@ const Router = () => {
         element={
           <MainLayout>
             <HomePage />
+          </MainLayout>
+        }
+      />
+
+      <Route
+        path="/payment/:id"
+        element={
+          <MainLayout>
+            <PaymentPage />
           </MainLayout>
         }
       />

@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+// import { ToastContainer } from 'react-toastify/dist/components';
+import toast from 'react-hot-toast';
 
 interface PropertyCardProps {
+  id: string;
   src: string;
   title: string;
   price: number;
@@ -11,10 +16,19 @@ interface PropertyCardProps {
 
 interface PriceTagButtonProps {
   price: number;
+  id: string;
 }
 
 // Property Card Component
-const PropertyCard: React.FC<PropertyCardProps> = ({ src, title, price, size, description, location }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({
+  id,
+  src,
+  title,
+  price,
+  size,
+  description,
+  location
+}) => {
   return (
     <div className="w-[420px] mx-auto bg-white pl-[0px] rounded-lg shadow-md border border-gray-300 overflow-hidden flex flex-col relative">
       <Header />
@@ -23,7 +37,15 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ src, title, price, size, de
         alt="A beautiful cottage surrounded by greenery and flowers"
         className="w-full h-[500px] object-cover"
       />
-      <CardContent src={src} title={title} price={price} size={size} description={description} location={location} />
+      <CardContent
+        src={src}
+        title={title}
+        price={price}
+        size={size}
+        description={description}
+        location={location}
+        id={id}
+      />
     </div>
   );
 };
@@ -31,7 +53,11 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ src, title, price, size, de
 // Header Component
 const Header: React.FC = () => (
   <div className="flex items-center p-4">
-    <img src="https://placehold.co/40x40" alt="Government Housing Logo" className="w-10 h-10 rounded-full" />
+    <img
+      src="https://placehold.co/40x40"
+      alt="Government Housing Logo"
+      className="w-10 h-10 rounded-full"
+    />
     <div className="ml-3">
       <h2 className="text-lg font-bold">Government Housing</h2>
       <p className="text-sm text-gray-500">Houses for all</p>
@@ -43,7 +69,14 @@ const Header: React.FC = () => (
 );
 
 // Card Content Component
-const CardContent: React.FC<PropertyCardProps> = ({ title, price, size, description, location }) => {
+const CardContent: React.FC<PropertyCardProps> = ({
+  id,
+  title,
+  price,
+  size,
+  description,
+  location
+}) => {
   const [showMore, setShowMore] = useState(false);
 
   const fullText =
@@ -72,7 +105,7 @@ const CardContent: React.FC<PropertyCardProps> = ({ title, price, size, descript
           <DetailIcon iconClass="fas fa-map-marker-alt" text={location} />
           <span className="text-[10px]">Building condition: Brand New</span>
         </div>
-        <PriceTagButton price={price} />
+        <PriceTagButton price={price} id={id} />
         <div className="flex items-center text-gray-500 text-sm my-2 space-x-2 pt-[10px]">
           <span>37 Reviews</span>
 
@@ -81,7 +114,10 @@ const CardContent: React.FC<PropertyCardProps> = ({ title, price, size, descript
           </span>
 
           <div className="text-gray-500 text-sm">
-            <button onClick={() => setShowMore((prev) => !prev)} className="text-blue-500 ml-2 hover:underline">
+            <button
+              onClick={() => setShowMore((prev) => !prev)}
+              className="text-blue-500 ml-2 hover:underline"
+            >
               {showMore ? 'See Less' : 'See More'}
             </button>
           </div>
@@ -105,30 +141,45 @@ const Footer: React.FC = () => (
 );
 
 // Price and Button Component
-const PriceTagButton: React.FC<PriceTagButtonProps> = ({ price }) => (
-  <div className="flex items-center space-x-4 mt-3">
-    {/* Price Tag */}
-    <div className="flex items-center bg-gradient-to-l from-yellow-200 to-orange-200 px-3 py-2 rounded-lg shadow-md">
-      <i
-        className="fas fa-tag ml-2 transform scale-x-[-1]"
-        style={{
-          WebkitTextStroke: '1px black', // Outline effect
-          color: 'transparent' // Transparent fill
-        }}
-      ></i>
-      <span className="ml-2 text-black font-semibold">${price}</span>
-    </div>
+const PriceTagButton: React.FC<PriceTagButtonProps> = ({ price, id }) => {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
 
-    {/* Buy Now Button */}
-    <button className="flex items-center border border-yellow-500 text-yellow-500 shadow-yellow-500 shadow-md px-3 py-1 rounded-lg hover:bg-yellow-200 transition">
-      <span className="fa-stack fa-xs">
-        <i className="fas fa-tag fa-stack-2x transform scale-x-[-1]"></i>
-        <i className="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-      </span>
-      <span className="ml-2 font-bold shadow-yellow">Buy Now</span>
-    </button>
-  </div>
-);
+  return (
+    <div className="flex items-center space-x-4 mt-3">
+      {/* Price Tag */}
+      <div className="flex items-center bg-gradient-to-l from-yellow-200 to-orange-200 px-3 py-2 rounded-lg shadow-md">
+        <i
+          className="fas fa-tag ml-2 transform scale-x-[-1]"
+          style={{
+            WebkitTextStroke: '1px black', // Outline effect
+            color: 'transparent' // Transparent fill
+          }}
+        ></i>
+        <span className="ml-2 text-black font-semibold">${price}</span>
+      </div>
+
+      {/* Buy Now Button */}
+      <button className="flex items-center border border-yellow-500 text-yellow-500 shadow-yellow-500 shadow-md px-3 py-1 rounded-lg hover:bg-yellow-200 transition"
+        onClick={() => {
+        if (isLoggedIn) {
+            navigate(`/payment/${id}`); // Redirect to Payment Page
+          } else {
+            toast.error('Please sign in to buy!');
+            navigate(`/payment/${id}`); // REMOVE IT AFTER TESTING
+            // navigate('/signin'); // Redirect to Signin Page
+        }
+      }}
+      >
+        <span className="fa-stack fa-xs">
+          <i className="fas fa-tag fa-stack-2x transform scale-x-[-1]"></i>
+          <i className="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+        </span>
+        <span className="ml-2 font-bold shadow-yellow">Buy Now</span>
+      </button>
+    </div>
+  );
+};
 
 // Reusable Icon Button Component
 const IconButton: React.FC<{ iconClass: string; badge?: number }> = ({ iconClass, badge }) => (

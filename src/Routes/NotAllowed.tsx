@@ -13,7 +13,10 @@ const NotAllowed = () => {
       <p className="text-primary text-lg md:text-2xl font-medium text-center mb-6">
         You are not allowed to access this page.
       </p>
-      <button onClick={handleGoBack} className="text-secondary text-sm md:text-lg font-medium underline cursor-pointer">
+      <button
+        onClick={handleGoBack}
+        className="text-secondary text-sm md:text-lg font-medium underline cursor-pointer"
+      >
         Go back to the previous page
       </button>
     </div>
