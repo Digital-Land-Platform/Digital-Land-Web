@@ -1,13 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { toast } from 'react-hot-toast';
-import { ToastContainer } from 'react-toastify';
-import { useAuth } from '../../context/AuthContext';
 
 const Profile = () => {
   const [token, setToken] = useState<string | null>(null);
   const [code, setCode] = useState<string | null>(null);
-
-  const { login } = useAuth();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -34,8 +30,6 @@ const Profile = () => {
         if (response.ok) {
           const access_token = await response.text();
           localStorage.setItem('access_token', access_token);
-          console.log({ access_token });
-          login();
           return access_token;
         } else {
           toast.error('Failed to fetch token.');
@@ -47,7 +41,7 @@ const Profile = () => {
         return null; // Return null if there's an error
       }
     },
-    [API_BASE_URL, login]
+    [API_BASE_URL]
   );
 
   // Fetch token when `code` changes
@@ -66,7 +60,6 @@ const Profile = () => {
 
   return (
     <div>
-      <ToastContainer />
       <h2>Access Token</h2>
       <p>{token ? (window.location.href = import.meta.env.VITE_MAIN_URI) : 'Check your email for verification'}</p>
     </div>
