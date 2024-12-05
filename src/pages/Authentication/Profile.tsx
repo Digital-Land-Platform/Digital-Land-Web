@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { toast } from 'react-hot-toast';
 import { ToastContainer } from 'react-toastify';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/UseAuth';
 
 const Profile = () => {
   const [token, setToken] = useState<string | null>(null);

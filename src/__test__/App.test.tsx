@@ -3,19 +3,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import App from '../App';
+import { AuthContextProvider } from '../context/AuthContext';
 
 describe('App', () => {
   it('renders the WelcomePage component', () => {
     render(
       <Router>
-        <App />
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
       </Router>
     );
 
-    // const landingPageElement = screen.getByText(/Explore our collections/i);
-    // expect(landingPageElement).toBeInTheDocument();
-
-    // const categoryElement = screen.getByText(/Electronic/i);
-    // expect(categoryElement).toBeInTheDocument();
+    // Add the assertions here
   });
 });

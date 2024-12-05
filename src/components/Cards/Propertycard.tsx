@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 // import { ToastContainer } from 'react-toastify/dist/components';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../context/UseAuth';
 
 interface PropertyCardProps {
   id: string;
@@ -20,15 +20,7 @@ interface PriceTagButtonProps {
 }
 
 // Property Card Component
-const PropertyCard: React.FC<PropertyCardProps> = ({
-  id,
-  src,
-  title,
-  price,
-  size,
-  description,
-  location
-}) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ id, src, title, price, size, description, location }) => {
   return (
     <div className="w-[420px] mx-auto bg-white pl-[0px] rounded-lg shadow-md border border-gray-300 overflow-hidden flex flex-col relative">
       <Header />
@@ -53,11 +45,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
 // Header Component
 const Header: React.FC = () => (
   <div className="flex items-center p-4">
-    <img
-      src="https://placehold.co/40x40"
-      alt="Government Housing Logo"
-      className="w-10 h-10 rounded-full"
-    />
+    <img src="https://placehold.co/40x40" alt="Government Housing Logo" className="w-10 h-10 rounded-full" />
     <div className="ml-3">
       <h2 className="text-lg font-bold">Government Housing</h2>
       <p className="text-sm text-gray-500">Houses for all</p>
@@ -69,14 +57,7 @@ const Header: React.FC = () => (
 );
 
 // Card Content Component
-const CardContent: React.FC<PropertyCardProps> = ({
-  id,
-  title,
-  price,
-  size,
-  description,
-  location
-}) => {
+const CardContent: React.FC<PropertyCardProps> = ({ id, title, price, size, description, location }) => {
   const [showMore, setShowMore] = useState(false);
 
   const fullText =
@@ -114,10 +95,7 @@ const CardContent: React.FC<PropertyCardProps> = ({
           </span>
 
           <div className="text-gray-500 text-sm">
-            <button
-              onClick={() => setShowMore((prev) => !prev)}
-              className="text-blue-500 ml-2 hover:underline"
-            >
+            <button onClick={() => setShowMore((prev) => !prev)} className="text-blue-500 ml-2 hover:underline">
               {showMore ? 'See Less' : 'See More'}
             </button>
           </div>
@@ -131,7 +109,7 @@ const CardContent: React.FC<PropertyCardProps> = ({
 };
 
 // Footer Component
-const Footer: React.FC = () => (
+export const Footer: React.FC = () => (
   <div className="absolute top-4 right-4 pl-[0px] ml-[100px] rounded-lg flex flex-col items-center space-y-1">
     <IconButton iconClass="far fa-eye" badge={100} />
     <IconButton iconClass="far fa-heart" badge={50} />
@@ -160,16 +138,17 @@ const PriceTagButton: React.FC<PriceTagButtonProps> = ({ price, id }) => {
       </div>
 
       {/* Buy Now Button */}
-      <button className="flex items-center border border-yellow-500 text-yellow-500 shadow-yellow-500 shadow-md px-3 py-1 rounded-lg hover:bg-yellow-200 transition"
+      <button
+        className="flex items-center border border-yellow-500 text-yellow-500 shadow-yellow-500 shadow-md px-3 py-1 rounded-lg hover:bg-yellow-200 transition"
         onClick={() => {
-        if (isLoggedIn) {
+          if (isLoggedIn) {
             navigate(`/payment/${id}`); // Redirect to Payment Page
           } else {
             toast.error('Please sign in to buy!');
             navigate(`/payment/${id}`); // REMOVE IT AFTER TESTING
             // navigate('/signin'); // Redirect to Signin Page
-        }
-      }}
+          }
+        }}
       >
         <span className="fa-stack fa-xs">
           <i className="fas fa-tag fa-stack-2x transform scale-x-[-1]"></i>
@@ -182,7 +161,7 @@ const PriceTagButton: React.FC<PriceTagButtonProps> = ({ price, id }) => {
 };
 
 // Reusable Icon Button Component
-const IconButton: React.FC<{ iconClass: string; badge?: number }> = ({ iconClass, badge }) => (
+export const IconButton: React.FC<{ iconClass: string; badge?: number }> = ({ iconClass, badge }) => (
   <button>
     <div className="flex items-center space-x-2">
       <i className={`${iconClass} text-black-500 text-2xl`}></i>
@@ -197,7 +176,7 @@ const IconButton: React.FC<{ iconClass: string; badge?: number }> = ({ iconClass
 );
 
 // Reusable Detail Icon Component
-const DetailIcon: React.FC<{ iconClass: string; text: string }> = ({ iconClass, text }) => (
+export const DetailIcon: React.FC<{ iconClass: string; text: string }> = ({ iconClass, text }) => (
   <div className="flex items-center space-x-1">
     <i className={`${iconClass} text-gray-500`}></i>
     <span>{text}</span>

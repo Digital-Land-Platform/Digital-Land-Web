@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import SigninButton from '../../components/Button/SIgninButton';
 import { FaUser } from 'react-icons/fa';
-import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/UseAuth';
 
 const Header: React.FC = () => {
   const { isLoggedIn, logout } = useAuth();
   const [isProfileMenuVisible, setIsProfileMenuVisible] = useState(false);
   const navigate = useNavigate();
-  
+
   const toggleProfileMenu = () => {
     setIsProfileMenuVisible(!isProfileMenuVisible);
   };
@@ -35,25 +35,42 @@ const Header: React.FC = () => {
 
           {/* Conditionally render Signin or Signout based on isLoggedIn */}
           <div className="flex items-center relative mt-4 md:mt-0">
-        {isLoggedIn ? (
+            {isLoggedIn ? (
               <>
-            <figure className="profile-photo cursor-pointer" onClick={toggleProfileMenu}>
+                <figure className="profile-photo cursor-pointer" onClick={toggleProfileMenu}>
                   <span className="w-10 h-10 rounded-full" title="Profile">
-                <FaUser className="w-10 h-10" />
+                    <FaUser className="w-10 h-10" />
                   </span>
-            </figure>
-            {isProfileMenuVisible && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
-                <ul>
-                  <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => handleProfileOptionClick('profile')}>My Account</li>
-                  <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => handleProfileOptionClick('dashboard')}>Dashboard</li>
-                  <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer" onClick={() => handleProfileOptionClick('logout')}>Logout</li>
-                </ul>
-              </div>
+                </figure>
+                {isProfileMenuVisible && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+                    <ul>
+                      <li
+                        className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                        onClick={() => handleProfileOptionClick('profile')}
+                      >
+                        My Account
+                      </li>
+                      <li
+                        className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                        onClick={() => handleProfileOptionClick('dashboard')}
+                      >
+                        Dashboard
+                      </li>
+                      <li
+                        className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                        onClick={() => handleProfileOptionClick('logout')}
+                      >
+                        Logout
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : (
+              <SigninButton />
             )}
-          </>
-        ) : <SigninButton />}
-      </div>
+          </div>
         </nav>
       </div>
     </header>
