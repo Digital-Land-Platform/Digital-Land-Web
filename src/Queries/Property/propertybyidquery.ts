@@ -13,6 +13,10 @@ export const GET_PROPERTY_BY_ID = gql`
         propertyId
         url
       }
+      amenities {
+        title
+        icon
+      }
       latitude
       legalStatus
       locationId

@@ -1,30 +1,26 @@
-import { useState } from "react";
-import { FaChevronCircleRight, FaChevronCircleLeft } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaChevronCircleRight, FaChevronCircleLeft } from 'react-icons/fa';
 
 const slides = [
   {
-    text: "Stay Tuned for the",
-    highlight: "Global Real Estate Summit of 2025!",
-    subText: "We bring you in touch with Experts in the trade.",
-    subText2: "Come and learn and share your experience.",
-    image:
-      "https://res.cloudinary.com/drcc4uyxf/image/upload/v1732231782/banner_pjeew5.png",
+    text: 'Stay Tuned for the',
+    highlight: 'Global Real Estate Summit of 2025!',
+    subText: 'We bring you in touch with Experts in the trade.',
+    subText2: 'Come and learn and share your experience.',
+    image: 'https://res.cloudinary.com/drcc4uyxf/image/upload/v1732231782/banner_pjeew5.png'
   },
   {
-    text: "Connect with Experts in the Trade!",
-    subText: "Join the conversation and grow your network.",
-    subText2: "",
-    image:
-      "https://res.cloudinary.com/drcc4uyxf/image/upload/v1732231782/banner_pjeew5.png",
-  },
+    text: 'Connect with Experts in the Trade!',
+    subText: 'Join the conversation and grow your network.',
+    subText2: '',
+    image: 'https://res.cloudinary.com/drcc4uyxf/image/upload/v1732231782/banner_pjeew5.png'
+  }
 ];
 
 export const HeroBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () =>
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
     <div className="w-[1104px] h-auto pt-[24px] px-[24px] gap-[24px] opacity-1 ">
@@ -70,42 +66,15 @@ export const HeroBanner = () => {
                 Z"
             />
             <defs>
-              <linearGradient
-                id="backgroundGradient"
-                x1="100%"
-                y1="0%"
-                x2="0%"
-                y2="0%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#B4BBD9", stopOpacity: 1 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#FFFFFF", stopOpacity: 1 }}
-                />
+              <linearGradient id="backgroundGradient" x1="100%" y1="0%" x2="0%" y2="0%">
+                <stop offset="0%" style={{ stopColor: '#B4BBD9', stopOpacity: 1 }} />
+                <stop offset="100%" style={{ stopColor: '#FFFFFF', stopOpacity: 1 }} />
               </linearGradient>
 
-              <linearGradient
-                id="bordergradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style={{ stopColor: "#005F73", stopOpacity: 1 }}
-                />
-                <stop
-                  offset="50%"
-                  style={{ stopColor: "#FF9700", stopOpacity: 1 }}
-                />
-                <stop
-                  offset="100%"
-                  style={{ stopColor: "#000034", stopOpacity: 1 }}
-                />
+              <linearGradient id="bordergradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{ stopColor: '#005F73', stopOpacity: 1 }} />
+                <stop offset="50%" style={{ stopColor: '#FF9700', stopOpacity: 1 }} />
+                <stop offset="100%" style={{ stopColor: '#000034', stopOpacity: 1 }} />
               </linearGradient>
             </defs>
           </svg>
@@ -121,7 +90,7 @@ export const HeroBanner = () => {
 
             <div className="w-[444px] h-[90px] flex flex-col items-center justify-center  gap-0 text-center ">
               <h2 className="font-[Inter] text-[18px] font-[500] leading-[21.78px] text-blue-950">
-                {slides[currentSlide].text}{" "}
+                {slides[currentSlide].text}{' '}
                 <span className="text-[18px] font-['Meriweather'] font-[900] text-red-600 leading-[22.63px]">
                   {slides[currentSlide].highlight}
                 </span>

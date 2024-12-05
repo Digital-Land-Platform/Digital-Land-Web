@@ -1,5 +1,5 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import loginReducer from "./loginReducer";
+import { combineReducers } from '@reduxjs/toolkit';
+import loginReducer from './loginReducer';
 
 // This is just showercasing how reducers should be configured
 // Import all reducers here and combine them

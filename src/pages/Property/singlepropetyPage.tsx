@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/client';
-import { GET_PROPERTY_BY_ID } from '../../Queries/propertybyidquery';
-import { GET_LOCATION } from '../../Queries/locationqueries';
+import { GET_PROPERTY_BY_ID } from '../../Queries/Property/propertybyidquery';
+import { GET_LOCATION } from '../../Queries/Property/locationqueries';
 import PropertyDetailsPage from '../../components/Property/singlePropertyPage';
 import { useParams } from 'react-router-dom';
 import { fetchLocation, formatLocation, Location } from '../../utils/locationUtils';
 
+interface PropertyImage {
+  id: string;
+  propertyId: string;
+  url: string;
+}
 interface GetLocationVariables {
   locationId: string;
 }
@@ -52,13 +57,20 @@ const PropertyDetailPage = () => {
     price: property.price,
     location: formattedLocation,
     proximity: property.streetViewUrl || 'N/A',
-    amenities: property.amenities,
+    amenities: property.amenities.map((amenity: { title: string; icon: string }) => ({
+      title: amenity.title,
+      icon: amenity.icon
+    })),
     yearbuilt: property.yearBuilt,
     longitude: property.longitude,
     latitude: property.latitude,
     rating: 'N/A',
-    image: property.images?.[0]?.url || 'https://via.placeholder.com/150',
-    thumbnails: property.images?.map((image: { url: string }) => image.url) || []
+    image: property.images?.map((image: PropertyImage) => ({
+      id: image.id,
+      propertyId: image.propertyId,
+      url: image.url
+    })) || [{ id: '', propertyId: '' }],
+    thumbnails: property.images?.map((image: PropertyImage) => image.url) || []
   };
 
   return (

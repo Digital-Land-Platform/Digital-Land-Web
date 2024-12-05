@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   postgresdb:
@@ -8,12 +8,12 @@ services:
       POSTGRES_PASSWORD: ${DEV_DB_PASS}
       POSTGRES_DB: ${DEV_DB_NAME}
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - knights-data:/var/lib/postgresql/data
 
   node-app:
-    image: tetobobo/knights-be-app:latest
+    image: digital-land/land-platform:latest
     container_name: backend
     env_file:
       - ./.env

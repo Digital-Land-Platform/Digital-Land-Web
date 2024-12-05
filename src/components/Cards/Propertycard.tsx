@@ -21,7 +21,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ id, src, title, price, size
     <div className="w-[420px] mx-auto bg-white pl-[0px] rounded-lg shadow-md border border-gray-300 overflow-hidden flex flex-col relative">
       <Header />
       <img
-        src={src || "https://placehold.co/400x300"}
+        src={src || 'https://placehold.co/400x300'}
         alt="A beautiful cottage surrounded by greenery and flowers"
         className="w-full h-[500px] object-cover"
       />
@@ -41,11 +41,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ id, src, title, price, size
 // Header Component
 const Header: React.FC = () => (
   <div className="flex items-center p-4">
-    <img
-      src="https://placehold.co/40x40"
-      alt="Government Housing Logo"
-      className="w-10 h-10 rounded-full"
-    />
+    <img src="https://placehold.co/40x40" alt="Government Housing Logo" className="w-10 h-10 rounded-full" />
     <div className="ml-3">
       <h2 className="text-lg font-bold">Government Housing</h2>
       <p className="text-sm text-gray-500">Houses for all</p>
@@ -125,8 +121,8 @@ const PriceTagButton: React.FC<PriceTagButtonProps> = ({ price }) => (
       <i
         className="fas fa-tag ml-2 transform scale-x-[-1]"
         style={{
-          WebkitTextStroke: "1px black", // Outline effect
-          color: "transparent", // Transparent fill
+          WebkitTextStroke: '1px black', // Outline effect
+          color: 'transparent' // Transparent fill
         }}
       ></i>
       <span className="ml-2 text-black font-semibold">${price}</span>
@@ -144,10 +140,7 @@ const PriceTagButton: React.FC<PriceTagButtonProps> = ({ price }) => (
 );
 
 // Reusable Icon Button Component
-const IconButton: React.FC<{ iconClass: string; badge?: number }> = ({
-  iconClass,
-  badge,
-}) => (
+const IconButton: React.FC<{ iconClass: string; badge?: number }> = ({ iconClass, badge }) => (
   <button>
     <div className="flex items-center space-x-2">
       <i className={`${iconClass} text-black-500 text-2xl`}></i>
@@ -162,10 +155,7 @@ const IconButton: React.FC<{ iconClass: string; badge?: number }> = ({
 );
 
 // Reusable Detail Icon Component
-const DetailIcon: React.FC<{ iconClass: string; text: string }> = ({
-  iconClass,
-  text,
-}) => (
+const DetailIcon: React.FC<{ iconClass: string; text: string }> = ({ iconClass, text }) => (
   <div className="flex items-center space-x-1">
     <i className={`${iconClass} text-gray-500`}></i>
     <span>{text}</span>

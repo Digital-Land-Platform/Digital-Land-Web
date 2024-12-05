@@ -7,11 +7,11 @@ export interface PropertyDetails {
   price: string;
   location: string;
   proximity: string;
-  amenities: string;
+  amenities: { title: string; icon: string }[];
   yearbuilt: string;
   longitude: string;
   latitude: string;
   rating: string;
-  image: string;
+  image: { id: string; propertyId: string; url: string }[];
   thumbnails: string[];
 }
