@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface PropertyCardProps {
+  id: string;
   src: string;
   title: string;
   price: number;
@@ -14,7 +16,7 @@ interface PriceTagButtonProps {
 }
 
 // Property Card Component
-const PropertyCard: React.FC<PropertyCardProps> = ({ src, title, price, size, description, location }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ id, src, title, price, size, description, location }) => {
   return (
     <div className="w-[420px] mx-auto bg-white pl-[0px] rounded-lg shadow-md border border-gray-300 overflow-hidden flex flex-col relative">
       <Header />
@@ -23,7 +25,15 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ src, title, price, size, de
         alt="A beautiful cottage surrounded by greenery and flowers"
         className="w-full h-[500px] object-cover"
       />
-      <CardContent src={src} title={title} price={price} size={size} description={description} location={location} />
+      <CardContent
+        id={id}
+        src={src}
+        title={title}
+        price={price}
+        size={size}
+        description={description}
+        location={location}
+      />
     </div>
   );
 };
@@ -43,14 +53,13 @@ const Header: React.FC = () => (
 );
 
 // Card Content Component
-const CardContent: React.FC<PropertyCardProps> = ({ title, price, size, description, location }) => {
-  const [showMore, setShowMore] = useState(false);
-
-  const fullText =
-    description ||
-    'The coolest land you ever saw in your entire life, with breathtaking views, lush green fields, and plenty of room to build your dream home. This property is the perfect place to escape the hustle and bustle of the city and enjoy nature.';
-  const truncatedText = '';
-
+const CardContent: React.FC<PropertyCardProps> = ({ id, title, price, size, location }) => {
+  const [showMore] = useState(false);
+  const navigate = useNavigate();
+  const handleSeeMore = () => {
+    // Navigate to the PropertyDetailPage when "See More" is clicked
+    navigate(`/property/${id}`);
+  };
   return (
     <div className="p-4 relative">
       {/* Property Details */}
@@ -81,12 +90,12 @@ const CardContent: React.FC<PropertyCardProps> = ({ title, price, size, descript
           </span>
 
           <div className="text-gray-500 text-sm">
-            <button onClick={() => setShowMore((prev) => !prev)} className="text-blue-500 ml-2 hover:underline">
+            <button onClick={handleSeeMore} className="text-blue-500 ml-2 hover:underline">
               {showMore ? 'See Less' : 'See More'}
             </button>
           </div>
         </div>
-        <p className="text-gray-500 text-sm mt-2">{showMore ? fullText : truncatedText}</p>
+        <p className="text-gray-500 text-sm mt-2">{/*{showMore ? fullText : truncatedText}*/}</p>
       </div>
       {/* Footer Icons */}
       <Footer />

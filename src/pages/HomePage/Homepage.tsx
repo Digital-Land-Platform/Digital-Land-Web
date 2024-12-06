@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, useLazyQuery } from '@apollo/client';
-import { GET_PROPERTIES } from '../../Queries/propertyqueries';
-import { GET_LOCATION } from '../../Queries/locationqueries';
+import { GET_PROPERTIES } from '../../Queries/Property/propertyqueries';
+import { GET_LOCATION } from '../../Queries/Property/locationqueries';
 import PropertyCard from '../../components/Cards/Propertycard';
 import HeroBanner from '../../components/HeroBanner/HeroBanner';
 import { ExclusiveOffers } from '../../components/ExclusiveOffers/ExclusiveOffers';
@@ -79,6 +79,7 @@ const Homepage = () => {
 
               return (
                 <PropertyCard
+                  id={property.id}
                   key={property.id}
                   src={property.images[0]?.url}
                   title={property.title}

@@ -4,6 +4,7 @@ import Profile from '../pages/Authentication/Profile';
 import MainLayout from '../layout/MainLayout';
 import NotFound from './NotFound';
 import HomePage from '../pages/HomePage/Homepage';
+import PropertyDetailPage from '../pages/Property/singlepropetyPage';
 
 const Router = () => {
   return (
@@ -22,6 +23,14 @@ const Router = () => {
         element={
           <MainLayout>
             <Profile />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="property/:id"
+        element={
+          <MainLayout>
+            <PropertyDetailPage />
           </MainLayout>
         }
       />
