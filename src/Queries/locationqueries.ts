@@ -6,6 +6,7 @@ export const GET_LOCATION = gql`
       country
       province
       sector
+      district
     }
   }
 `;

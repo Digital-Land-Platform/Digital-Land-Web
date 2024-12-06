@@ -19,7 +19,7 @@ const SigninButton: React.FC = () => {
         </span>
 
         {/* Text Section */}
-        <span>Sign Up</span>
+        <span>Sign in</span>
       </button>
     </div>
   );
