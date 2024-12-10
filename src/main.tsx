@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import { Auth0Provider } from '@auth0/auth0-react';
 import getEnvVariable from '../config/config';
+import { AuthContextProvider } from './context/AuthContext';
 
 const auth0Domain = getEnvVariable('VITE_AUTH_DOMAIN');
 const clientId = getEnvVariable('VITE_CLIENT_ID');
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           scope: 'offline_access openid profile email read:users'
         }}
       >
-        <App />
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
       </Auth0Provider>
       <Toaster />
       <ToastContainer theme="colored" />

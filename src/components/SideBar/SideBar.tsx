@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FaHome, FaFilm, FaCompass, FaHandshake, FaBars } from 'react-icons/fa';
 import SigninButton from '../../components/Button/SIgninButton';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/UseAuth';
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -9,13 +10,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Check localStorage for token
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    setIsLoggedIn(!!token); // Set isLoggedIn based on token presence
-  }, []);
+  const { isLoggedIn } = useAuth();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar state
