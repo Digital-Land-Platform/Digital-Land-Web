@@ -6,6 +6,7 @@ import App from '../App';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it } from 'vitest';
 import '@testing-library/jest-dom';
+import { AuthContextProvider } from '../context/AuthContext';
 describe('Root Component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
@@ -14,7 +15,9 @@ describe('Root Component', () => {
     render(
       <React.StrictMode>
         <BrowserRouter>
-          <App />
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
         </BrowserRouter>
       </React.StrictMode>,
       {
